@@ -53,11 +53,10 @@ class MyApp(App):
         # Página de Treinos
         workouts_layout = BoxLayout(orientation='vertical', spacing=30, padding=20)
         
-        # Adicionando o título "Lista de Exercícios para o Treino" no topo da tela
-        workouts_title = Label(text='Lista de Exercícios para o Treino', font_size=25, size_hint_y=None, height=50)
+        # Adicionando o título "Escolha o Treino" na terceira página
+        workouts_title_text = 'Escolha o Treino'
+        workouts_title = Label(text=workouts_title_text, font_size=25, size_hint_y=None, height=50)
         workouts_layout.add_widget(workouts_title)
-        
-        workouts_label = Label(text='Escolha o Treino', font_size=25)
 
         # Adicionando botões para cada treino
         workouts_buttons = []
@@ -76,36 +75,26 @@ class MyApp(App):
         # Página de Exercícios
         exercises_layout = BoxLayout(orientation='vertical', spacing=30, padding=20)
         
-        # Adicionando o título "Lista de Exercícios para o Treino" no topo da tela
-        exercises_title = Label(text='Lista de Exercícios para o Treino', font_size=25, size_hint_y=None, height=50)
-        exercises_layout.add_widget(exercises_title)
-
-        exercises_label = Label(text=f'Lista de Exercícios para o Treino {treino} - Opção {option.upper()}', font_size=25)
-
         # Mapeamento de exercícios para cada treino e opção
         exercises_map = {
-            ('inferior', 'A'): ["Mobilidade Curvado de Pé (3x12)", "Cadeira flexora (3x15)", "Elevação pélvica na maquina ( 3x15)", "cadeira abdutora (3x15)", "stiff (3x12)", "Panturrilheira (3x15)", "Esteira (15 minutos)"],
-            ('inferior', 'B'): ["Mobilidade posterior segurando com a ponta do tênis (3x12)", "Flexora deitada (mesa) (3x15)", "Cadeira abdutora (3x15)", "Leg extensor (3x15)", "Panturrilheira (3x15)", "Esteira ou bicicleta (15 minutos)"],
-            ('inferior', 'C'): ["Mobilidade de tornozelo solo (3x15)", "Agachamento barra hexagonal", "Pernada com apoio ao banco (3x12)", "Leg extensor(3x15)", "Panturrilheira (3x15)", "Esteira ou Elíptico (15 minutos)"],
-            ('inferior', 'D'): ["Mobilidade posterior segurando com a ponta do tênis (3x12)", "Elevação pelve maquina (4x1)", "Cadeira adutora (3x15)", "Leg press (3x15)", "Leg 45 maquina (3x15)", "Abdominal infra maquina (3x12)", "Esteira ou Elíptico (15 minutos)"],
-            ('superior', 'A'): ["Mobilidade rotação de ombro com superband (3x12)", "Supino reto (3x15)", "Rosca direta ( 3x15)", "Remada curvada (3x15)", "Tríceps Pulley (3x12)", "Abdominal supra (3x15)", "Esteira (15 min)"],
-            ('superior', 'B'): ["Mobilidade escapular", "Supino reto articulado (3x12)", "Voador (3x15)", "Elevação lateral com halter (3x12)", "Triceps corda (+tríceps testa com corda) (3x10 cada uma)", "Triceps francês com halter", "Esteira ou escada ( 15 minutos)"],
-            ('superior', 'C'): ["Mobilidade ombro no banco (dinâmico ou isométrico) (3x12)", "Remada fechada (3x15)", "Rosca direta ( 3x15)", "Supino (3x12)", "Elevação frontal (3x15)", "Esteira( 15 minutos)"],
-            ('superior', 'D'): ["Mobilidade escapular(3x12)", "Puxador frontal (3x12)", "Crucifixo (3x12)", "Tríceps paralela (3x12)", "Rosca martelo (+ rosca direta) (3x10 cada uma)", "Abdominal máquina (3x12)", "Esteira (15 minutos)"]
+            ('inferior', 'A'): ["Mobilidade Curvado de Pé (3x12)", "Cadeira Flexora (3x15)", "Elevação Pélvica na Máquina ( 3x15)", "Cadeira Abdutora (3x15)", "Stiff (3x12)", "Panturrilheira (3x15)", "Esteira (15 minutos)"],
+            ('inferior', 'B'): ["Mobilidade Posterior Segurando com a Ponta do Tênis (3x12)", "Flexora Deitada (mesa) (3x15)", "Cadeira Abdutora (3x15)", "Leg Extensor (3x15)", "Panturrilheira (3x15)", "Esteira ou Bicicleta (15 minutos)"],
+            ('inferior', 'C'): ["Mobilidade de Tornozelo Solo (3x15)", "Agachamento Barra Hexagonal", "Pernada com Apoio ao Banco (3x12)", "Leg Extensor(3x15)", "Panturrilheira (3x15)", "Esteira ou Elíptico (15 minutos)"],
+            ('inferior', 'D'): ["Mobilidade Posterior Segurando com a Ponta do Tênis (3x12)", "Elevação Pelve Máquina (4x1)", "Cadeira Adutora (3x15)", "Leg Press (3x15)", "Leg 45° Maquina (3x15)", "Abdominal Infra Máquina (3x12)", "Esteira ou Elíptico (15 minutos)"],
+            ('superior', 'A'): ["Mobilidade Rotação de Ombro com Superband (3x12)", "Supino Reto (3x15)", "Rosca Direta ( 3x15)", "Remada Curvada (3x15)", "Tríceps Pulley (3x12)", "Abdominal Supra (3x15)", "Esteira (15 min)"],
+            ('superior', 'B'): ["Mobilidade Escapular", "Supino Reto Articulado (3x12)", "Voador (3x15)", "Elevação lateral com Halter (3x12)", "Triceps Corda (+ Tríceps Testa com Corda) (3x10 cada uma)", "Triceps Francês com Halter", "Esteira ou Escada ( 15 minutos)"],
+            ('superior', 'C'): ["Mobilidade Ombro no banco (Dinâmico ou Isométrico) (3x12)", "Remada Fechada (3x15)", "Rosca Direta ( 3x15)", "Supino (3x12)", "Elevação Frontal (3x15)", "Esteira (15 minutos)"],
+            ('superior', 'D'): ["Mobilidade Escapular(3x12)", "Puxador Frontal (3x12)", "Crucifixo (3x12)", "Tríceps Paralela (3x12)", "Rosca Martelo (+ Rosca Direta) (3x10 each)", "Abdominal Máquina (3x12)", "Esteira (15 minutos)"]
         }
+
+        # Adicionando o título específico do treino selecionado
+        specific_title = Label(text=f"Lista de Exercícios para o Treino {treino} - Opção {option.upper()}", font_size=25, size_hint_y=None, height=50)
+        exercises_layout.add_widget(specific_title)
 
         # Adicionando os exercícios correspondentes ao treino e opção selecionados
         for exercise in exercises_map[(option, treino)]:
             exercise_label = Label(text=exercise)
             exercises_layout.add_widget(exercise_label)
-
-        # Definindo a cor do rótulo para verde escuro
-        exercises_label.color = (0, 0.5, 0, 1)
-        
-        # Adicionando o título no topo da tela
-        top_layout = BoxLayout(orientation='vertical', spacing=10)
-        top_layout.add_widget(exercises_label)
-        exercises_layout.add_widget(top_layout)
 
         # Atualizando o layout
         self.update_layout(exercises_layout)
