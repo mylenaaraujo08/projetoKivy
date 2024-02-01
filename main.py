@@ -82,13 +82,13 @@ class MyApp(App):
             ('inferior', 'C'): ["Mobilidade de Tornozelo Solo (3x15)", "Agachamento Barra Hexagonal", "Pernada com Apoio ao Banco (3x12)", "Leg Extensor(3x15)", "Panturrilheira (3x15)", "Esteira ou Elíptico (15 minutos)"],
             ('inferior', 'D'): ["Mobilidade Posterior Segurando com a Ponta do Tênis (3x12)", "Elevação Pelve Máquina (4x1)", "Cadeira Adutora (3x15)", "Leg Press (3x15)", "Leg 45° Maquina (3x15)", "Abdominal Infra Máquina (3x12)", "Esteira ou Elíptico (15 minutos)"],
             ('superior', 'A'): ["Mobilidade Rotação de Ombro com Superband (3x12)", "Supino Reto (3x15)", "Rosca Direta ( 3x15)", "Remada Curvada (3x15)", "Tríceps Pulley (3x12)", "Abdominal Supra (3x15)", "Esteira (15 min)"],
-            ('superior', 'B'): ["Mobilidade Escapular", "Supino Reto Articulado (3x12)", "Voador (3x15)", "Elevação lateral com Halter (3x12)", "Triceps Corda (+ Tríceps Testa com Corda) (3x10 cada uma)", "Triceps Francês com Halter", "Esteira ou Escada ( 15 minutos)"],
+            ('superior', 'B'): ["Mobilidade Escapular", "Supino Reto Articulado (3x12)", "Voador (3x15)", "Elevação lateral com Halter (3x12)", "Triceps Corda (+ Tríceps Testa com Corda) (3x10 each)", "Triceps Francês com Halter", "Esteira ou Escada ( 15 minutos)"],
             ('superior', 'C'): ["Mobilidade Ombro no banco (Dinâmico ou Isométrico) (3x12)", "Remada Fechada (3x15)", "Rosca Direta ( 3x15)", "Supino (3x12)", "Elevação Frontal (3x15)", "Esteira (15 minutos)"],
             ('superior', 'D'): ["Mobilidade Escapular(3x12)", "Puxador Frontal (3x12)", "Crucifixo (3x12)", "Tríceps Paralela (3x12)", "Rosca Martelo (+ Rosca Direta) (3x10 each)", "Abdominal Máquina (3x12)", "Esteira (15 minutos)"]
         }
 
         # Adicionando o título específico do treino selecionado
-        specific_title = Label(text=f"Lista de Exercícios para o Treino {treino} - Opção {option.upper()}", font_size=25, size_hint_y=None, height=50)
+        specific_title = Label(text=f"Lista de Exercícios para o Treino {treino} - Opção {option.upper()}", font_size=25, size_hint_y=None, height=50, color=(0, 0.5, 0, 1))
         exercises_layout.add_widget(specific_title)
 
         # Adicionando os exercícios correspondentes ao treino e opção selecionados
