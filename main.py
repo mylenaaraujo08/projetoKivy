@@ -7,6 +7,7 @@ from kivy.uix.boxlayout import BoxLayout
 
 class MyApp(App):
     def build(self):
+        self.pages = []  # Lista para armazenar as páginas visitadas
         self.current_layout = self.create_initial_layout()
         return self.current_layout
 
@@ -25,6 +26,7 @@ class MyApp(App):
 
         layout.add_widget(initial_image)
         layout.add_widget(continue_button)
+        self.pages.append(layout)  # Adicionando a página inicial à lista de páginas visitadas
 
         return layout
 
@@ -43,8 +45,13 @@ class MyApp(App):
         option2_button.pos_hint = {'center_x': 0.5}
         option1_button.background_color = option2_button.background_color = (0, 0.5, 0, 1)
 
+        back_button = Button(text='Voltar', on_press=self.back_to_previous_page, size_hint=(None, None), size=(100, 40), pos=(10, 10))
+        back_button.background_color = (0, 0.5, 0, 1)
+
         options_layout.add_widget(option1_button)
         options_layout.add_widget(option2_button)
+        options_layout.add_widget(back_button)
+        self.pages.append(options_layout)  # Adicionando a página de opções à lista de páginas visitadas
 
         # Atualizando o layout
         self.update_layout(options_layout)
@@ -67,6 +74,12 @@ class MyApp(App):
             button.background_color = (0, 0.5, 0, 1)
             workouts_buttons.append(button)
             workouts_layout.add_widget(button)
+
+        back_button = Button(text='Voltar', on_press=self.back_to_previous_page, size_hint=(None, None), size=(100, 40), pos=(10, 10))
+        back_button.background_color = (0, 0.5, 0, 1)
+
+        workouts_layout.add_widget(back_button)
+        self.pages.append(workouts_layout)  # Adicionando a página de treinos à lista de páginas visitadas
 
         # Atualizando o layout
         self.update_layout(workouts_layout)
@@ -96,8 +109,21 @@ class MyApp(App):
             exercise_label = Label(text=exercise)
             exercises_layout.add_widget(exercise_label)
 
+        back_button = Button(text='Voltar', on_press=self.back_to_previous_page, size_hint=(None, None), size=(100, 40), pos=(10, 10))
+        back_button.background_color = (0, 0.5, 0, 1)
+
+        exercises_layout.add_widget(back_button)
+        self.pages.append(exercises_layout)  # Adicionando a página de exercícios à lista de páginas visitadas
+
         # Atualizando o layout
         self.update_layout(exercises_layout)
+
+    def back_to_previous_page(self, instance):
+        # Voltando para a página anterior
+        if len(self.pages) > 1:  # Verifica se há pelo menos uma página anterior
+            previous_layout = self.pages[-2]  # Obtém o layout da página anterior
+            self.pages.pop()  # Remove a página atual da lista de páginas visitadas
+            self.update_layout(previous_layout)  # Atualiza o layout para exibir a página anterior
 
     def update_layout(self, new_layout):
         # Removendo antigos widgets e adicionando novos à layout
