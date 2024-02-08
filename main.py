@@ -15,18 +15,16 @@ class MyApp(App):
         # Página Inicial
         layout = FloatLayout()
 
-        # Substitua o caminho da imagem pelo caminho correto no seu sistema
         image_path = r'C:\Users\mylen\Downloads\treino.png'
         initial_image = Image(source=image_path, size=(800, 800), size_hint=(None, None), pos_hint={'center_x': 0.5, 'center_y': 0.5})
 
-        # Adicionando opção "Continuar" abaixo da imagem
         continue_button = Button(text='Continuar', on_press=self.show_options, size_hint=(None, None), pos_hint={'center_x': 0.5, 'center_y': 0.1})
         continue_button.size = (200, 50)
         continue_button.background_color = (0, 0.5, 0, 1)  # Cor verde escuro (R, G, B, A)
 
         layout.add_widget(initial_image)
         layout.add_widget(continue_button)
-        self.pages.append(layout)  # Adicionando a página inicial à lista de páginas visitadas
+        self.pages.append(layout)  
 
         return layout
 
@@ -51,21 +49,17 @@ class MyApp(App):
         options_layout.add_widget(option1_button)
         options_layout.add_widget(option2_button)
         options_layout.add_widget(back_button)
-        self.pages.append(options_layout)  # Adicionando a página de opções à lista de páginas visitadas
+        self.pages.append(options_layout) 
 
-        # Atualizando o layout
         self.update_layout(options_layout)
 
     def show_workouts_page(self, instance, option):
-        # Página de Treinos
         workouts_layout = BoxLayout(orientation='vertical', spacing=30, padding=20)
         
-        # Adicionando o título "Escolha o Treino" na terceira página
         workouts_title_text = 'Escolha o Treino'
         workouts_title = Label(text=workouts_title_text, font_size=25, size_hint_y=None, height=50)
         workouts_layout.add_widget(workouts_title)
 
-        # Adicionando botões para cada treino
         workouts_buttons = []
         for i in range(4):
             button = Button(text=f'Treino {chr(65 + i)}', on_press=lambda x, treino=chr(65 + i): self.show_exercises_page(x, option, treino), size_hint=(None, None))
@@ -81,14 +75,11 @@ class MyApp(App):
         workouts_layout.add_widget(back_button)
         self.pages.append(workouts_layout)  # Adicionando a página de treinos à lista de páginas visitadas
 
-        # Atualizando o layout
         self.update_layout(workouts_layout)
 
     def show_exercises_page(self, instance, option, treino):
-        # Página de Exercícios
         exercises_layout = BoxLayout(orientation='vertical', spacing=30, padding=20)
-        
-        # Mapeamento de exercícios para cada treino e opção
+ 
         exercises_map = {
             ('inferior', 'A'): ["Mobilidade Curvado de Pé (3x12)", "Cadeira Flexora (3x15)", "Elevação Pélvica na Máquina ( 3x15)", "Cadeira Abdutora (3x15)", "Stiff (3x12)", "Panturrilheira (3x15)", "Esteira (15 minutos)"],
             ('inferior', 'B'): ["Mobilidade Posterior Segurando com a Ponta do Tênis (3x12)", "Flexora Deitada (mesa) (3x15)", "Cadeira Abdutora (3x15)", "Leg Extensor (3x15)", "Panturrilheira (3x15)", "Esteira ou Bicicleta (15 minutos)"],
@@ -100,11 +91,9 @@ class MyApp(App):
             ('superior', 'D'): ["Mobilidade Escapular(3x12)", "Puxador Frontal (3x12)", "Crucifixo (3x12)", "Tríceps Paralela (3x12)", "Rosca Martelo (+ Rosca Direta) (3x10 each)", "Abdominal Máquina (3x12)", "Esteira (15 minutos)"]
         }
 
-        # Adicionando o título específico do treino selecionado
         specific_title = Label(text=f"Lista de Exercícios para o Treino {treino} - Opção {option.upper()}", font_size=25, size_hint_y=None, height=50, color=(0, 0.5, 0, 1))
         exercises_layout.add_widget(specific_title)
 
-        # Adicionando os exercícios correspondentes ao treino e opção selecionados
         for exercise in exercises_map[(option, treino)]:
             exercise_label = Label(text=exercise)
             exercises_layout.add_widget(exercise_label)
@@ -113,20 +102,17 @@ class MyApp(App):
         back_button.background_color = (0, 0.5, 0, 1)
 
         exercises_layout.add_widget(back_button)
-        self.pages.append(exercises_layout)  # Adicionando a página de exercícios à lista de páginas visitadas
+        self.pages.append(exercises_layout) 
 
-        # Atualizando o layout
         self.update_layout(exercises_layout)
 
     def back_to_previous_page(self, instance):
-        # Voltando para a página anterior
         if len(self.pages) > 1:  # Verifica se há pelo menos uma página anterior
             previous_layout = self.pages[-2]  # Obtém o layout da página anterior
             self.pages.pop()  # Remove a página atual da lista de páginas visitadas
             self.update_layout(previous_layout)  # Atualiza o layout para exibir a página anterior
 
     def update_layout(self, new_layout):
-        # Removendo antigos widgets e adicionando novos à layout
         self.root.clear_widgets()
         self.root.add_widget(new_layout)
 
