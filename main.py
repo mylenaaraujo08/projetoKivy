@@ -7,12 +7,11 @@ from kivy.uix.boxlayout import BoxLayout
 
 class MyApp(App):
     def build(self):
-        self.pages = []  # Lista para armazenar as páginas visitadas
+        self.pages = []  
         self.current_layout = self.create_initial_layout()
         return self.current_layout
 
     def create_initial_layout(self):
-        # Página Inicial
         layout = FloatLayout()
 
         image_path = r'C:\Users\mylen\Downloads\treino.png'
@@ -20,7 +19,7 @@ class MyApp(App):
 
         continue_button = Button(text='Continuar', on_press=self.show_options, size_hint=(None, None), pos_hint={'center_x': 0.5, 'center_y': 0.1})
         continue_button.size = (200, 50)
-        continue_button.background_color = (0, 0.5, 0, 1)  # Cor verde escuro (R, G, B, A)
+        continue_button.background_color = (0, 0.5, 0, 1) 
 
         layout.add_widget(initial_image)
         layout.add_widget(continue_button)
@@ -73,7 +72,7 @@ class MyApp(App):
         back_button.background_color = (0, 0.5, 0, 1)
 
         workouts_layout.add_widget(back_button)
-        self.pages.append(workouts_layout)  # Adicionando a página de treinos à lista de páginas visitadas
+        self.pages.append(workouts_layout)  
 
         self.update_layout(workouts_layout)
 
@@ -107,10 +106,10 @@ class MyApp(App):
         self.update_layout(exercises_layout)
 
     def back_to_previous_page(self, instance):
-        if len(self.pages) > 1:  # Verifica se há pelo menos uma página anterior
-            previous_layout = self.pages[-2]  # Obtém o layout da página anterior
-            self.pages.pop()  # Remove a página atual da lista de páginas visitadas
-            self.update_layout(previous_layout)  # Atualiza o layout para exibir a página anterior
+        if len(self.pages) > 1: 
+            previous_layout = self.pages[-2]  
+            self.pages.pop()  
+            self.update_layout(previous_layout)  
 
     def update_layout(self, new_layout):
         self.root.clear_widgets()
